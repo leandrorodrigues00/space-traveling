@@ -8,16 +8,14 @@
     margin-top: 3rem;
   }
 
-
-  button{
+  button {
     border: none;
     background: transparent;
     font-weight: 600;
     font-size: 1.2rem;
     color: var(--highlight);
     margin-top: 4rem;
-
-}
+  }
 }
 
 .post {
@@ -44,12 +42,8 @@
       }
 
       & + li {
-          margin-left: 1.5rem;
+        margin-left: 1.5rem;
       }
     }
   }
-
-
-
 }
-

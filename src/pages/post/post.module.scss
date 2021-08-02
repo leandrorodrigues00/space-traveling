@@ -52,17 +52,16 @@
     margin-bottom: 4rem;
 
     & li {
-        margin: 0;
-        font-size: 1rem;
+      margin: 0;
+      font-size: 1rem;
 
-        & svg{
-            margin-right: 0.5rem;
-        }
+      & svg {
+        margin-right: 0.5rem;
+      }
 
-        & + li {
-            margin-left: 0.7rem;
-        }
+      & + li {
+        margin-left: 0.7rem;
+      }
     }
-
   }
 }

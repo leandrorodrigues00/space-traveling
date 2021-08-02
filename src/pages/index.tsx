@@ -1,17 +1,17 @@
-import { GetStaticProps } from "next";
-import Link from "next/link";
-import Header from "../components/Header";
-import { FiCalendar, FiUser } from "react-icons/fi";
-import Prismic from "@prismicio/client";
-import { getPrismicClient } from "../services/prismic";
+import { GetStaticProps } from 'next';
+import Link from 'next/link';
+import { FiCalendar, FiUser } from 'react-icons/fi';
+import Prismic from '@prismicio/client';
 
-import commonStyles from "../styles/common.module.scss";
-import styles from "./home.module.scss";
-import { useState } from "react";
+import { useState } from 'react';
 
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import Head from "next/head";
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+import Head from 'next/head';
+import styles from './home.module.scss';
+import commonStyles from '../styles/common.module.scss';
+import { getPrismicClient } from '../services/prismic';
+import Header from '../components/Header';
 
 interface Post {
   uid?: string;
@@ -33,12 +33,12 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps): JSX.Element {
-  const formattedPosts = postsPagination.results.map((post) => {
+  const formattedPosts = postsPagination.results.map(post => {
     return {
       ...post,
       first_publication_date: format(
         new Date(post.first_publication_date),
-        "dd MMM yyyy",
+        'dd MMM yyyy',
         {
           locale: ptBR,
         }
@@ -53,18 +53,18 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
     if (currentPage !== 1 && nextPage === null) {
       return;
     }
-    const postsResults = await fetch(`${nextPage}`).then((response) =>
+    const postsResults = await fetch(`${nextPage}`).then(response =>
       response.json()
     );
     setNextPage(postsResults.next_page);
     setCurrentPage(postsResults.page);
 
-    const newPosts = postsResults.results.map((post) => {
+    const newPosts = postsResults.results.map(post => {
       return {
         uid: post.uid,
         first_publication_date: format(
           new Date(post.first_publication_date),
-          "dd MMM yyyy",
+          'dd MMM yyyy',
           {
             locale: ptBR,
           }
@@ -86,11 +86,10 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
         <title>Home | spacetraveling </title>
       </Head>
 
-
       <main className={commonStyles.container}>
         <Header />
         <div className={styles.posts}>
-          {posts.map((post) => (
+          {posts.map(post => (
             <Link href={`/post/${post.uid}`} key={post.uid}>
               <a className={styles.post}>
                 <strong>{post.data.title}</strong>
@@ -123,13 +122,13 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient();
   const postsResponse = await prismic.query(
-    [Prismic.predicates.at("document.type", "posts")],
+    [Prismic.predicates.at('document.type', 'posts')],
     {
       pageSize: 1,
     }
   );
 
-  const posts = postsResponse.results.map((post) => {
+  const posts = postsResponse.results.map(post => {
     return {
       uid: post.uid,
       first_publication_date: post.first_publication_date,
