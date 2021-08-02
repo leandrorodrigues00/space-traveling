@@ -11,6 +11,7 @@ import { useState } from "react";
 
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import Head from "next/head";
 
 interface Post {
   uid?: string;
@@ -48,8 +49,44 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
   const [nextPage, setNextPage] = useState(postsPagination.next_page);
   const [currentPage, setCurrentPage] = useState(1);
 
+  async function handleNextPage(): Promise<void> {
+    if (currentPage !== 1 && nextPage === null) {
+      return;
+    }
+    const postsResults = await fetch(`${nextPage}`).then((response) =>
+      response.json()
+    );
+    setNextPage(postsResults.next_page);
+    setCurrentPage(postsResults.page);
+
+    const newPosts = postsResults.results.map((post) => {
+      return {
+        uid: post.uid,
+        first_publication_date: format(
+          new Date(post.first_publication_date),
+          "dd MMM yyyy",
+          {
+            locale: ptBR,
+          }
+        ),
+        data: {
+          title: post.data.title,
+          subtitle: post.data.subtitle,
+          author: post.data.author,
+        },
+      };
+    });
+
+    setPosts([...posts, ...newPosts]);
+  }
+
   return (
     <>
+      <Head>
+        <title>Home | spacetraveling </title>
+      </Head>
+
+
       <main className={commonStyles.container}>
         <Header />
         <div className={styles.posts}>
@@ -72,7 +109,11 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
             </Link>
           ))}
 
-          <button type="button">Carregar mais posts</button>
+          {nextPage && (
+            <button type="button" onClick={handleNextPage}>
+              Carregar mais posts
+            </button>
+          )}
         </div>
       </main>
     </>
@@ -87,7 +128,6 @@ export const getStaticProps: GetStaticProps = async () => {
       pageSize: 1,
     }
   );
-  console.log(postsResponse);
 
   const posts = postsResponse.results.map((post) => {
     return {
