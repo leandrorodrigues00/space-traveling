@@ -1,8 +1,6 @@
-#  🏗🏗🏗 UNDER CONSTRUCTION 🏗🏗🏗
+# Blog - Space Traveling
 
-
-# desafio03-trilha-react<h1 align="center">
-
+<img alt="home" src=".github/home.png"/>
 
 <br><br>
 
@@ -22,7 +20,7 @@
 ## 👩‍💻 About the project
 
 This blog was a project developed  for a RocketSeat Ignite Challenge. <br>
-The idea was to develop an application from 0,  From the front-end to connecting to Prismic CMS for the publication of posts.
+The idea was to develop an application from the front-end to connecting to Prismic CMS for the publication of posts.
 
 ## 🚀 Technologies
 
