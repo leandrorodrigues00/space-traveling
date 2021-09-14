@@ -40,8 +40,8 @@ The idea was to develop an application from the front-end to connecting to Prism
 **Clone the project and access the folder**
 
 ```bash
-$ git clone https:
-
+$ git clone https://github.com/leandrorodrigues00/space-traveling.git
+$ cd space-traveling
 ```
 
 **Follow the steps below**
