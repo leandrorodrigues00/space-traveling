@@ -19,8 +19,13 @@
 
 ## 👩‍💻 About the project
 
-This blog was a project developed  for a RocketSeat Ignite Challenge. <br>
-The idea was to develop an application from the front-end to connecting to Prismic CMS for the publication of posts.
+- This blog was a project developed  for a RocketSeat Ignite Challenge. <br>
+- The idea was to develop an application from the front-end to connecting to Prismic CMS for the publication of posts.
+- It also contains the Integration with Prismic's Preview system, where it is possible to see an unpublished post inside the blog, even before it is published.
+- Uses Utteranc to add comments to blog posts
+
+<br>[click here, see closer](https://space-traveling-lr00.vercel.app/)  😉 
+
 
 ## 🚀 Technologies
 
